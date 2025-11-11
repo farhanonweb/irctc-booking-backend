@@ -1,0 +1,45 @@
+/*
+ * Yeh file Gradle ke 'init' task se generate hui thi.
+ *
+ * Yeh file aapko shuru karne ke liye ek sample Java application project deti hai.
+ * Java aur JVM projects banane ke baare mein adhik jaankari ke liye, 
+ * Gradle documentation mein https://docs.gradle.org/9.0.0/userguide/building_java_projects.html dekhein.
+ */
+
+plugins {
+    // Java CLI application ke liye application plugin use kiya gaya hai
+    id 'application'
+}
+
+repositories {
+    // Dependencies ke liye Maven Central repository ka use
+    mavenCentral()
+}
+
+dependencies {
+    // ---- Application dependencies ----
+    implementation 'com.google.guava:guava:32.1.2-jre'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.6'
+    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.mindrot:jbcrypt:0.4'
+
+    // ---- Testing dependencies ----
+    testImplementation 'junit:junit:4.13.2'
+}
+
+java {
+    toolchain {
+        // Java version 21 set ki gayi hai
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    // Project ki main class
+    mainClass = 'irctc.App'
+}
+
+tasks.named('test') {
+    // JUnit 4 ka test framework use kiya gaya hai
+    useJUnit()
+}
